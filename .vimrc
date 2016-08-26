@@ -17,6 +17,14 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'jplaut/vim-arduino-ino'
+Plugin 'mattn/emmet-vim'
+Plugin 'drmingdrmer/xptemplate'
+Plugin 'xolox/vim-notes'
+Plugin 'xolox/vim-misc'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
 
 call vundle#end()          
 filetype plugin indent on   
@@ -103,4 +111,7 @@ inoremap <Down> <C-o>:echo "No left for you!"<CR>
 nmap <S-Enter> O<Esc>j
 nmap <CR> o<Esc>k
 
+let g:xptemplate_key = '<Tab>'
 
+"tmux mess up with the color
+set t_ut=
