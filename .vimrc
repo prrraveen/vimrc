@@ -25,6 +25,12 @@ Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
+Plugin 'ghcmod-vim'
+Plugin 'neco-ghc'
+Plugin 'neocompletee.vim'
+Plugin 'tabular'
+Plugin 'supertab'
+Plugin 'neocomplete'
 
 call vundle#end()          
 filetype plugin indent on   
@@ -53,7 +59,7 @@ set shortmess+=A
 filetype plugin indent on
 
 " On pressing tab, insert 4 spaces
-"set expandtab
+set expandtab
 
 "for yanking across terminal
 set clipboard=unnamed
@@ -73,6 +79,7 @@ nmap <Leader>n :NERDTreeToggle<CR>
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,node_modules     " MacOSX/Linux
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
+
 "jsx syntax and indent on .js files
 let g:jsx_ext_required = 0
 
@@ -80,7 +87,8 @@ let g:jsx_ext_required = 0
 set backspace=indent,eol,start
 
 " Tab control
-set noexpandtab " tabs ftw
+"set noexpandtab " tabs ftw
+set expandtab
 set smarttab " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
 set tabstop=4 " the visible width of tabs
 set softtabstop=4 " edit as if the tabs are 4 characters wide
@@ -113,5 +121,8 @@ nmap <CR> o<Esc>k
 
 let g:xptemplate_key = '<Tab>'
 
+
 "tmux mess up with the color
 set t_ut=
+
+
