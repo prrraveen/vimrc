@@ -1,5 +1,7 @@
 set nocompatible              " be iMproved, required
+
 filetype off                  " required
+
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -13,37 +15,22 @@ Plugin 'rking/ag.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'vim-airline/vim-airline'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-fugitive'
 Plugin 'jplaut/vim-arduino-ino'
-Plugin 'mattn/emmet-vim'
-Plugin 'drmingdrmer/xptemplate'
-Plugin 'xolox/vim-notes'
-Plugin 'xolox/vim-misc'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
-Plugin 'ghcmod-vim'
-Plugin 'neco-ghc'
-Plugin 'neocompletee.vim'
-Plugin 'tabular'
-Plugin 'supertab'
-Plugin 'neocomplete'
 
 call vundle#end()          
+
+syntax on
 filetype plugin indent on   
 
-"autocmd VimEnter * NERDTree 
+set paste
 
-set background=light
+set background=dark " dark | light "
 let g:solarized_termcolors=256
 se t_Co=256
 colorscheme solarized
+call togglebg#map("<F5>")
 
 let mapleader=","
-
 "set incremantal search on
 set incsearch
 "highlight all mactchin 
@@ -54,9 +41,9 @@ set number
 "You can set the directory where the swap files are stored, so they don't
 "clutter your normal directories:
 set swapfile
-set dir=~/tmp
+set dir=~/.tmp
 set shortmess+=A
-filetype plugin indent on
+
 
 " On pressing tab, insert 4 spaces
 set expandtab
@@ -64,7 +51,6 @@ set expandtab
 "for yanking across terminal
 set clipboard=unnamed
 
-set paste
 
 if executable('ag')
   " Use Ag over Grep
@@ -120,9 +106,3 @@ nmap <S-Enter> O<Esc>j
 nmap <CR> o<Esc>k
 
 let g:xptemplate_key = '<Tab>'
-
-
-"tmux mess up with the color
-set t_ut=
-
-
