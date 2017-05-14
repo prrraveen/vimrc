@@ -1,4 +1,3 @@
-set nocompatible              " be iMproved, required
 
 filetype off                  " required
 
@@ -9,22 +8,26 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'scrooloose/syntastic'
+Plugin 'vim-syntastic/syntastic'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'rking/ag.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'vim-airline/vim-airline'
-Plugin 'jplaut/vim-arduino-ino'
-
+Plugin 'sirver/ultisnips'
+" Snippets are separated from the engine. Add this if you want them:
+"Plugin 'honza/vim-snippets'
+Plugin 'ervandew/supertab'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'tpope/vim-surround'
 call vundle#end()          
 
 syntax on
 filetype plugin indent on   
 
-set paste
+"set paste
 
-set background=dark " dark | light "
+set background=dark" dark | light "
 let g:solarized_termcolors=256
 se t_Co=256
 colorscheme solarized
@@ -38,19 +41,28 @@ set hlsearch
 "set line number
 set number
 
-"You can set the directory where the swap files are stored, so they don't
-"clutter your normal directories:
-set swapfile
-set dir=~/.tmp
-set shortmess+=A
-
-
-" On pressing tab, insert 4 spaces
-set expandtab
-
-"for yanking across terminal
+"for yanking across system clipboard
 set clipboard=unnamed
 
+nmap <Leader>n :NERDTreeToggle<CR>
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,node_modules     " MacOSX/Linux
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
+" make backspace behave in a sane manner
+set backspace=indent,eol,start
+
+" Tab control
+"set noexpandtab " tabs ftw
+set expandtab
+set smarttab " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
+set tabstop=8 " the visible width of tabs
+set softtabstop=4 " edit as if the tabs are 4 characters wide
+set shiftwidth=4 " number of spaces to use for indent and unindent
+set shiftround " round indent to a multiple of 'shiftwidth'
+
+"jsx syntax and indent on .js files
+let g:jsx_ext_required = 0
 
 if executable('ag')
   " Use Ag over Grep
@@ -60,49 +72,54 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 
-nmap <Leader>n :NERDTreeToggle<CR>
+"You can set the directory where the swap files are stored, so they don't
+"clutter your normal directories:
+set swapfile
+set dir=~/.tmp
+set shortmess+=A
 
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,node_modules     " MacOSX/Linux
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let NERDTreeIgnore= ['\.pyc$']
 
+nnoremap W w
 
-"jsx syntax and indent on .js files
-let g:jsx_ext_required = 0
+let g:ycm_server_python_interpreter='/usr/bin/python'
+set pastetoggle=<F10>
 
-" make backspace behave in a sane manner
-set backspace=indent,eol,start
-
-" Tab control
-"set noexpandtab " tabs ftw
-set expandtab
-set smarttab " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
-set tabstop=4 " the visible width of tabs
-set softtabstop=4 " edit as if the tabs are 4 characters wide
-set shiftwidth=4 " number of spaces to use for indent and unindent
-set shiftround " round indent to a multiple of 'shiftwidth'
-
-" code folding settings
-set foldmethod=syntax " fold based on indent
-set foldnestmax=10 " deepest fold is 10 levels
-set nofoldenable " don't fold by default
-set foldlevel=1
-
-nnoremap <Left> :echo "No left for you!"<CR>
-vnoremap <Left> :<C-u>echo "No left for you!"<CR>
-inoremap <Left> <C-o>:echo "No left for you!"<CR>
-nnoremap <Right> :echo "No left for you!"<CR>
-vnoremap <Right> :<C-u>echo "No left for you!"<CR>
-inoremap <Right> <C-o>:echo "No left for you!"<CR>
-nnoremap <Up> :echo "No left for you!"<CR>
-vnoremap <Up> :<C-u>echo "No left for you!"<CR>
-inoremap <Up> <C-o>:echo "No left for you!"<CR>
-nnoremap <Down> :echo "No left for you!"<CR>
-vnoremap <Down> :<C-u>echo "No left for you!"<CR>
-inoremap <Down> <C-o>:echo "No left for you!"<CR>
+"let g:loaded_youcompleteme = 1
 
 
-"enter new line without insert mode and remain at present line
-nmap <S-Enter> O<Esc>j
-nmap <CR> o<Esc>k
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<c-b>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-let g:xptemplate_key = '<Tab>'
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+"
+"make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+"let g:UltiSnipsSnippetsDir="~/UltiSnips"
+let g:UltiSnipsSnippetDirectories=[$HOME.'/UltiSnips']
+
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_check_on_open = 1
+
+let g:syntastic_python_flake8_post_args='--ignore=E231,E501,E302,E226,E126,E225,E228,W291'
+"close nerdtree after opening the file
+let  NERDTreeQuitOnOpen = 1
+
+"nerd tree split in right with s
+set splitright
+
+"navigate using C
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
