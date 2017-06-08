@@ -27,11 +27,10 @@ filetype plugin indent on
 
 "set paste
 
-set background=dark" dark | light "
+set background=light
 let g:solarized_termcolors=256
 se t_Co=256
 colorscheme solarized
-call togglebg#map("<F5>")
 
 let mapleader=","
 "set incremantal search on
@@ -85,7 +84,7 @@ nnoremap W w
 let g:ycm_server_python_interpreter='/usr/bin/python'
 set pastetoggle=<F10>
 
-"let g:loaded_youcompleteme = 1
+let g:loaded_youcompleteme = 1
 
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
@@ -111,7 +110,7 @@ let g:UltiSnipsSnippetDirectories=[$HOME.'/UltiSnips']
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_check_on_open = 1
 
-let g:syntastic_python_flake8_post_args='--ignore=E231,E501,E302,E226,E126,E225,E228,W291'
+let g:syntastic_python_flake8_post_args='--ignore=E231,E501,E302,E226,E126,E225,E228,W291,E241,E124,E201,E128,E122,E702,E293,E203,E202,W391,W293,E221,E305'
 "close nerdtree after opening the file
 let  NERDTreeQuitOnOpen = 1
 
@@ -123,3 +122,6 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+" fix the shift O timelen issue for new line up
+set timeout timeoutlen=5000 ttimeoutlen=100
