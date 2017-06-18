@@ -20,6 +20,7 @@ Plugin 'sirver/ultisnips'
 Plugin 'ervandew/supertab'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'tpope/vim-surround'
+Plugin 'scrooloose/nerdcommenter'
 call vundle#end()          
 
 syntax on
@@ -27,7 +28,7 @@ filetype plugin indent on
 
 "set paste
 
-set background=light
+set background=dark
 let g:solarized_termcolors=256
 se t_Co=256
 colorscheme solarized
@@ -73,7 +74,7 @@ endif
 
 "You can set the directory where the swap files are stored, so they don't
 "clutter your normal directories:
-set swapfile
+"set swapfile
 set dir=~/.tmp
 set shortmess+=A
 
@@ -84,7 +85,7 @@ nnoremap W w
 let g:ycm_server_python_interpreter='/usr/bin/python'
 set pastetoggle=<F10>
 
-let g:loaded_youcompleteme = 1
+"let g:loaded_youcompleteme = 1
 
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
@@ -110,12 +111,12 @@ let g:UltiSnipsSnippetDirectories=[$HOME.'/UltiSnips']
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_check_on_open = 1
 
-let g:syntastic_python_flake8_post_args='--ignore=E231,E501,E302,E226,E126,E225,E228,W291,E241,E124,E201,E128,E122,E702,E293,E203,E202,W391,W293,E221,E305'
+let g:syntastic_python_flake8_post_args='--ignore=E231,E501,E302,E226,E126,E225,E228,W291,E241,E124,E201,E128,E122,E702,E293,E203,E202,W391,W293,E221,E305,F401,E251'
 "close nerdtree after opening the file
 let  NERDTreeQuitOnOpen = 1
 
 "nerd tree split in right with s
-set splitright
+"set splitright
 
 "navigate using C
 nnoremap <C-h> <C-w>h

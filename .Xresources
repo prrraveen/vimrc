@@ -15,6 +15,8 @@ Xft.hintstyle:              hintslight
 ! http://pod.tst.eu/http://cvs.schmorp.de/rxvt-unicode/doc/rxvt.1.pod
 !-------------------------------------------------------------------------------
 
+
+urxvt.saveLines: 1000000
 URxvt.depth:                32
 URxvt.geometry:             90x30
 URxvt.transparent:          false
@@ -29,8 +31,10 @@ URxvt.lineSpace:            0
 ! Fonts
 URxvt.allow_bold:           false
 /* URxvt.font:                 -*-terminus-medium-r-normal-*-12-120-72-72-c-60-iso8859-1 */
-URxvt*font: xft:Monospace:pixelsize=15
-URxvt*boldFont: xft:Monospace:pixelsize=15
+!URxvt*font: xft:Monospace:pixelsize=14
+!URxvt*boldFont: xft:Monospace:pixelsize=14
+urxvt.font: xft:DejaVu Sans Mono:pixelsize=14
+urxvt.boldFont: xft:DejaVu Sans Mono:pixelsize=14:weight=bold
 
 ! Fix font space
 URxvt*letterSpace: -1
@@ -94,4 +98,5 @@ URxvt.pointerBlank:         true
 *color7: #eee8d5
 *color15: #fdf6e3
 
-URxvt.keysym.Control-Tab: \033[27;5;9~
+!! URxvt.keysym.Control-Tab: \033[27;5;9~
+
