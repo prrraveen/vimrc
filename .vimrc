@@ -9,18 +9,19 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'vim-syntastic/syntastic'
-Plugin 'ctrlpvim/ctrlp.vim'
+"Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'rking/ag.vim'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
+"Plugin 'pangloss/vim-javascript'
+"Plugin 'mxw/vim-jsx'
 Plugin 'vim-airline/vim-airline'
 Plugin 'sirver/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 "Plugin 'honza/vim-snippets'
-Plugin 'ervandew/supertab'
-Plugin 'christoomey/vim-tmux-navigator'
+"Plugin 'ervandew/supertab'
+"Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'wikitopian/hardmode'
 call vundle#end()          
 
 syntax on
@@ -28,7 +29,7 @@ filetype plugin indent on
 
 "set paste
 
-set background=dark
+set background=light
 let g:solarized_termcolors=256
 se t_Co=256
 colorscheme solarized
@@ -75,17 +76,16 @@ endif
 "You can set the directory where the swap files are stored, so they don't
 "clutter your normal directories:
 "set swapfile
-set dir=~/.tmp
+"set dir=~/.tmp
 set shortmess+=A
 
-let NERDTreeIgnore= ['\.pyc$']
+let NERDTreeIgnore= ['\.pyc$','__init__.py','__pycache__', 'watch.sh']
 
 nnoremap W w
 
-let g:ycm_server_python_interpreter='/usr/bin/python'
+"let g:ycm_server_python_interpreter='/usr/bin/python'
 set pastetoggle=<F10>
 
-"let g:loaded_youcompleteme = 1
 
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
@@ -94,24 +94,25 @@ set pastetoggle=<F10>
 "let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+"let g:UltiSnipsEditSplit="vertical"
 "
 "make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
+"let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+"let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+"let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsListSnippets = "<f2>"
 "let g:UltiSnipsSnippetsDir="~/UltiSnips"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/UltiSnips']
 
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_check_on_open = 1
 
-let g:syntastic_python_flake8_post_args='--ignore=E231,E501,E302,E226,E126,E225,E228,W291,E241,E124,E201,E128,E122,E702,E293,E203,E202,W391,W293,E221,E305,F401,E251'
+let g:syntastic_python_flake8_post_args='--ignore=E231,E501,E302,E226,E126,E225,E228,W291,E241,E124,E201,E128,E122,E702,E293,E203,E202,W391,W293,E221,E305,F401,E251,E261,E222,E131,E303,E116,E121,E123,E402,E265,F841,E701,E272,E704'
 "close nerdtree after opening the file
 let  NERDTreeQuitOnOpen = 1
 
@@ -119,10 +120,42 @@ let  NERDTreeQuitOnOpen = 1
 "set splitright
 
 "navigate using C
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+"nnoremap <C-h> <C-w>h
+"nnoremap <C-j> <C-w>j
+"nnoremap <C-k> <C-w>k
+"nnoremap <C-l> <C-w>l
 
 " fix the shift O timelen issue for new line up
 set timeout timeoutlen=5000 ttimeoutlen=100
+
+set guioptions-=L 
+set guioptions-=R
+
+"https://stackoverflow.com/questions/597687/changing-variable-names-in-vim
+" For local replace
+nnoremap gr gd[{V%::s/<C-R>///gc<left><left><left>
+
+" For global replace
+nnoremap gR gD:%s/<C-R>///gc<left><left><left>
+
+cnoremap CC %s/print/#print/g
+cnoremap UC %s/#print/print
+
+nnoremap <F1> :w<CR> 
+nnoremap <F5> :redraw!<CR>
+
+"Scrolling in vim autocomplete box with jk movement keys
+inoremap <expr> j ((pumvisible())?("\<C-n>"):("j"))
+inoremap <expr> k ((pumvisible())?("\<C-p>"):("k"))
+
+" breaking the bad habbit of moving cursor with arrow keys
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
+" Game up. 
+noremap h <NOP>
+noremap j <NOP>
+noremap k <NOP>
+noremap l <NOP>
