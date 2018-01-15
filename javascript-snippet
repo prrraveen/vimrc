@@ -1,0 +1,83 @@
+snippet re "import react" b
+import React from 'react';
+import PropTypes from 'prop-types';
+endsnippet
+
+snippet pr "import propTypes" b
+${1:Foo}.propTypes = {
+	$2
+};
+endsnippet
+
+snippet class "extend Comp" b
+class ${1:Foo} extends React.Component {
+  render() {
+		return (
+		);
+  }
+}
+
+$1.propTypes = {
+};
+
+export default $1;
+endsnippet
+
+snippet const "constructor" b
+constructor(props) {
+	super(props);
+}
+endsnippet
+snippet co "import connect" b
+import { connect } from 'react-redux';
+endsnippet
+
+snippet con "console" b
+console.log($1)
+endsnippet
+
+snippet ex "export default" b
+export default
+endsnippet
+
+snippet str "stringify"
+{JSON.stringify(input)}
+endsnippet
+
+snippet dp "dispatch props" b
+const dispatchProps = dispatch => ({
+
+});
+endsnippet
+
+snippet sp "state Props" b
+const stateProps = ({ $1 }) => ({
+});
+endsnippet
+
+snippet mp "merge Props" b
+const mergeProps = (sp, dp, op) => ({
+  ...sp, //stateProps
+  ...dp, //dispatchProps
+  ...op, //ownProps
+});
+endsnippet
+
+snippet ed "export default" b
+export default ${1};
+endsnippet
+
+snippet red "reducer" b
+const initState = []
+
+export default (state = initState, action) => {
+  switch (action.type) {
+    default:
+      return state;
+  }
+}
+endsnippet
+
+snippet bind "bind" b
+this.$1 = this.$1.bind(this);
+endsnippet
