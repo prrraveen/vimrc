@@ -1,9 +1,9 @@
 *
-!.vimrc
-!.tmux.conf
 !.Xresources
 !.xinitrc
 !.gitignore
 !pacman.txt
 !*/UltiSnips
 !.config/fish/config.fish
+!.config/nvim/init.vim
+!client.ovpn
